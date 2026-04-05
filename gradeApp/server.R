@@ -219,7 +219,7 @@ function(input, output, session){
                                          paste0(subs_path,  students[[rv$s_index]]$script_path)
                                        },
                                        readFunc = function(x) {
-                                         paste(readLines(x), collapse = '\n')
+                                         paste(readLines(x, warn = FALSE), collapse = '\n')
                                        })
 
   # Update script in editor
