@@ -107,6 +107,14 @@ bslib::page_sidebar(
     });"
   )),
 
+  tags$head(
+    tags$style(HTML("#s_call {
+      white-space: pre-wrap;
+    }")),
+    tags$style(HTML("#a_call {
+      white-space: pre-wrap;
+    }"))),
+
   # activate shinyjs and extendShinyjs
   useShinyjs(),
   extendShinyjs(text = jscode, functions = "refocus"),
@@ -126,12 +134,18 @@ bslib::page_sidebar(
   # Answers
   layout_column_wrap(
     accordion(id = "s_card", multiple = TRUE,
-              accordion_panel("Student call", verbatimTextOutput("s_call")),
-              accordion_panel("Student answer", div(style = "height: 200px; overflow-x: scroll; overflow-y: scroll;",
+              accordion_panel("Student call",
+                              div(style = "height: 70px; overflow-x: scroll; overflow-y: scroll;",
+                              verbatimTextOutput("s_call")),
+                              hr(),
+                              div(style = "height: 200px; overflow-x: scroll; overflow-y: scroll;",
                                                      verbatimTextOutput("s_answer")))),
     accordion(id = "a_card", multiple = TRUE,
-              accordion_panel("Solution call", verbatimTextOutput("a_call")),
-              accordion_panel("Solution answer", div(style = "height: 200px; overflow-x: scroll; overflow-y: scroll;",
+              accordion_panel("Solution call",
+                              div(style = "height: 70px; overflow-x: scroll; overflow-y: scroll;",
+                              verbatimTextOutput("a_call")),
+                              hr(),
+                              div(style = "height: 200px; overflow-x: scroll; overflow-y: scroll;",
                                                      verbatimTextOutput("a_answer"))))
   ),
 
