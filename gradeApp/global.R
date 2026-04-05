@@ -26,6 +26,9 @@ answers <- readRDS("../data/1002_answers.rda")
 # Set path to submission directory
 subs_path <- "www/submissions/"
 
+# Set path to plot directory
+plot_path <- "www/plots/"
+
 # Read descriptive data
 tot_student <- length(students)
 tot_question <- length(answers)

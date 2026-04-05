@@ -216,7 +216,7 @@ function(input, output, session){
   # Get student script when student changes
   student_script <- reactiveFileReader(1000, session,
                                        filePath = function() {
-                                         paste0(ass_path,  students[[rv$s_index]]$script_path)
+                                         paste0(subs_path,  students[[rv$s_index]]$script_path)
                                        },
                                        readFunc = function(x) {
                                          paste(readLines(x), collapse = '\n')
