@@ -32,12 +32,6 @@ card_progress <- bslib::card(
   checkboxInput("flag", "Flag question", FALSE)
 )
 
-# card_progress <- bslib::card(
-#   bslib::card_header("Progress"),
-#   shiny::htmlOutput("progress"),
-#   uiOutput("grading_status")
-# )
-
 ##### Shortcuts #####
 short_nav_sym <- div(
     strong("\u2190"),
