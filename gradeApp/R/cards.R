@@ -15,7 +15,7 @@ card_student_call <- bslib::card(
 
 card_student_plot <- bslib::card(
   bslib::card_header("Student plots"),
-  uiOutput("s_plots")
+  htmlOutput("s_plots")
 )
 
 ##### Grading cards #####
@@ -39,7 +39,7 @@ card_progress <- bslib::card(
 
 card_solution_plot <- bslib::card(
   bslib::card_header("Solution plots"),
-  uiOutput("a_plots")
+  htmlOutput("a_plots")
 )
 
 ##### Shortcuts #####
