@@ -13,6 +13,11 @@ card_student_call <- bslib::card(
   verbatimTextOutput("s_answer")
 )
 
+card_student_plot <- bslib::card(
+  bslib::card_header("Student plots"),
+  uiOutput("s_plots")
+)
+
 ##### Grading cards #####
 card_solution <- bslib::card(
   bslib::card_header("Expected call & output"),
@@ -30,6 +35,11 @@ card_progress <- bslib::card(
   textOutput("score_display"),
   textOutput("last_date"),
   checkboxInput("flag", "Flag question", FALSE)
+)
+
+card_solution_plot <- bslib::card(
+  bslib::card_header("Solution plots"),
+  uiOutput("a_plots")
 )
 
 ##### Shortcuts #####

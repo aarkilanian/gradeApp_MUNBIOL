@@ -129,7 +129,13 @@ bslib::page_sidebar(
   uiOutput("question_prompt"),
 
   # Student code
-  sidebar = bslib::sidebar(card_code, width = "45%", open = FALSE),
+  sidebar = bslib::sidebar(width = "45%", open = FALSE,
+                           card_code),
+
+  # Plots
+  plot_sidebar = bslib::sidebar(position = "left", width = "45%", open = FALSE,
+                                card_student_plot,
+                                card_solution_plot),
 
   # Answers
   layout_column_wrap(
