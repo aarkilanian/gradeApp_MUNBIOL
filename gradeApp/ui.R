@@ -107,6 +107,7 @@ bslib::page_sidebar(
     });"
   )),
 
+  # Add head tags for word wrapping
   tags$head(
     tags$style(HTML("#s_call {
       white-space: pre-wrap;
@@ -133,9 +134,10 @@ bslib::page_sidebar(
                            card_code),
 
   # Plots
-  plot_sidebar = bslib::sidebar(position = "left", width = "45%", open = FALSE,
-                                card_student_plot,
-                                card_solution_plot),
+  plot_sidebar = bslib::sidebar(position = "right", width = "45%", open = FALSE,
+                                # card_student_plot,
+                                card_solution_plot
+                                ),
 
   # Answers
   layout_column_wrap(

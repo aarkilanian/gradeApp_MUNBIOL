@@ -22,6 +22,7 @@ students <- readRDS("../data/autograded.rda")
 
 # Read solutions
 answers <- readRDS("../data/1002_answers.rda")
+answer_plots <- "../data/1002_plots.pdf"
 
 # Set path to submission directory
 subs_path <- "www/submissions/"

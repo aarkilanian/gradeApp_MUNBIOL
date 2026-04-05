@@ -242,6 +242,14 @@ function(input, output, session){
     evaled_call()
   })
 
+  ##### PLOTS #####
+
+  # output$s_plots <- renderText({
+  #   return(paste('<iframe style="height:600px; width:100%" src="', input$pdfurl, '"></iframe>', sep = ""))
+  # })
+
+  output$a_plots <- renderUI({tags$iframe(src = answer_plots)})
+
   ##### NAVIGATION #####
 
   # Change student (forward)
