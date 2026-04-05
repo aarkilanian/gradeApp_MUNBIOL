@@ -24,7 +24,7 @@ students <- readRDS("../data/autograded.rda")
 answers <- readRDS("../data/1002_answers.rda")
 
 # Set path to submission directory
-ass_path <- "www/"
+subs_path <- "www/submissions/"
 
 # Read descriptive data
 tot_student <- length(students)
