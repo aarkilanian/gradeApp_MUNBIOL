@@ -1,4 +1,8 @@
+page_fillable(
+
 bslib::page_sidebar(
+
+  theme = bs_theme(font_scale = font_zoom),
 
   ##### SHORTCUTS #####
   tags$script(HTML(
@@ -107,6 +111,8 @@ bslib::page_sidebar(
     });"
   )),
 
+  ##### HTML HEAD TAGS #####
+
   # Add head tags for word wrapping
   tags$head(
     tags$style(HTML("#s_call {
@@ -116,66 +122,73 @@ bslib::page_sidebar(
       white-space: pre-wrap;
     }"))),
 
-  # activate shinyjs and extendShinyjs
-  useShinyjs(),
-  extendShinyjs(text = jscode, functions = "refocus"),
+  ##### LAYOUT SETUP #####
 
-  # activate shiny feedback
-  shinyFeedback::useShinyFeedback(),
-
-  # Title
-  shiny::titlePanel(shiny::htmlOutput("student_question")),
-
-  # Subtitle
-  uiOutput("question_prompt"),
-
-  # Student code
+  # Student code sidebar
   sidebar = bslib::sidebar(width = "45%", open = FALSE,
                            card_code),
 
-  # Plots
-  plot_sidebar = bslib::sidebar(position = "right", width = "45%", open = FALSE,
-                                # card_student_plot,
-                                card_solution_plot
-                                ),
+  ##### INNER LAYOUT #####
 
-  # Answers
-  layout_column_wrap(
-    accordion(id = "s_card", multiple = TRUE,
-              accordion_panel("Student call",
-                              div(style = "height: 70px; overflow-x: scroll; overflow-y: scroll;",
-                              verbatimTextOutput("s_call")),
-                              hr(),
-                              div(style = "height: 200px; overflow-x: scroll; overflow-y: scroll;",
-                                                     verbatimTextOutput("s_answer")))),
-    accordion(id = "a_card", multiple = TRUE,
-              accordion_panel("Solution call",
-                              div(style = "height: 70px; overflow-x: scroll; overflow-y: scroll;",
-                              verbatimTextOutput("a_call")),
-                              hr(),
-                              div(style = "height: 200px; overflow-x: scroll; overflow-y: scroll;",
-                                                     verbatimTextOutput("a_answer"))))
-  ),
+  # Create nested layout
+  layout_sidebar(
 
-  # Grading
-  layout_column_wrap(
-    card_rubric,
-    card_progress
-  ),
+    ##### PLOTS #####
 
-  # Footer
-  accordion(open = FALSE,
-            accordion_panel(
-              title = "Shortcuts (click to expand / shrink)",
-              fillRow(
-                flex = c(1,5,1,5),
-                height = "100px",
-                short_nav_sym,
-                short_nav_desc,
-                short_grade_sym,
-                short_grade_desc
-              )
-            )
+    sidebar =  bslib::sidebar(position = "right", width = "60%", height = "600px",
+                              layout_column_wrap(
+                                card(card_header("Student plots"), uiOutput("s_plots")),
+                                card(card_header("Solution plots"), uiOutput("a_plots"))
+                              )),
+
+
+    ##### HEADER #####
+
+    # Title
+    div(style = "line-height: 24px;",
+        uiOutput("student_question")),
+
+    ##### CARDS #####
+
+    # Grading
+    layout_column_wrap(
+      card_rubric,
+      card_progress
+    ),
+
+    # Answers
+    layout_column_wrap(
+      accordion(id = "s_card", multiple = TRUE,
+                accordion_panel("Student call",
+                                div(style = "height: 70px; overflow-x: scroll; overflow-y: scroll;",
+                                    verbatimTextOutput("s_call")),
+                                hr(),
+                                div(style = "height: 200px; overflow-x: scroll; overflow-y: scroll;",
+                                    verbatimTextOutput("s_answer")))),
+      accordion(id = "a_card", multiple = TRUE,
+                accordion_panel("Solution call",
+                                div(style = "height: 70px; overflow-x: scroll; overflow-y: scroll;",
+                                    verbatimTextOutput("a_call")),
+                                hr(),
+                                div(style = "height: 200px; overflow-x: scroll; overflow-y: scroll;",
+                                    verbatimTextOutput("a_answer"))))
+    ),
+
+    ##### FOOTER #####
+
+    # Shortcuts
+    accordion(open = FALSE,
+              accordion_panel(
+                title = "Shortcuts (click to expand / shrink)",
+                fillRow(
+                  flex = c(1,5,1,5),
+                  height = "100px",
+                  short_nav_sym,
+                  short_nav_desc,
+                  short_grade_sym,
+                  short_grade_desc
+    )))
+
   )
-
+)
 )

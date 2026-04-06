@@ -1,3 +1,6 @@
+# Set app zoom
+font_zoom = 1
+
 ##### Setup #####
 
 # Load packages
@@ -6,8 +9,6 @@ require(lubridate)
 require(bslib)
 require(shiny)
 require(shinyAce)
-require(shinyjs)
-require(shinyFeedback)
 
 # Source functions
 source("R/cards.R")
@@ -20,9 +21,11 @@ rubric <- read.csv("../data/1002_rubric.csv") %>%
 # Read autograding output
 students <- readRDS("../data/autograded.rda")
 
+students[[1]]$plot_path <- "solution_plots.pdf"
+
 # Read solutions
 answers <- readRDS("../data/1002_answers.rda")
-answer_plots <- "../data/1002_plots.pdf"
+answer_plots <- "solution_plots.pdf"
 
 # Set path to submission directory
 subs_path <- "www/submissions/"
@@ -33,12 +36,6 @@ plot_path <- "www/plots/"
 # Read descriptive data
 tot_student <- length(students)
 tot_question <- length(answers)
-
-# JavaScript refocus function
-jscode <- "
-shinyjs.refocus = function(e_id) {
-  document.getElementById(e_id).focus();
-}"
 
 ##### Log #####
 

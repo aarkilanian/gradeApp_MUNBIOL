@@ -28,12 +28,8 @@ function(input, output, session){
 
   # Current student and question
   output$student_question <- renderUI({
-    HTML(paste0("Student ", rv$s_index, " | ", "Question ", rv$q_index))
-  })
-
-  # Question prompt
-  output$question_prompt <- renderUI({
-    h5(answers[[rv$q_index]]$prompt)
+    HTML(paste0("<b>", "Student ", rv$s_index, " | ", "Question ", rv$q_index,
+                "</b>", "<br>", answers[[rv$q_index]]$prompt))
   })
 
   # Autograding comments
@@ -43,7 +39,7 @@ function(input, output, session){
     # Define condition based on input
     text_color <- if (cur_grade) "green" else "red"
 
-    # Retreive message
+    # Retrieve message
     mess <- students[[rv$s_index]]$questions[[rv$q_index]]$message
 
     # Return a styled HTML span or div
@@ -75,12 +71,6 @@ function(input, output, session){
   # Display grade
   output$score_display <- renderText({
     paste("Question score: ", score())
-  })
-
-  # Display plots
-  output$pdfview <- renderUI({
-    tags$iframe(style="height:600px; width:100%",
-                src=paste0("my_plots.pdf#page=", input$page_num))
   })
 
   ##### RUBRIC #####
@@ -244,11 +234,15 @@ function(input, output, session){
 
   ##### PLOTS #####
 
-  # output$s_plots <- renderText({
-  #   return(paste('<iframe style="height:600px; width:100%" src="', input$pdfurl, '"></iframe>', sep = ""))
-  # })
+  output$s_plots <- renderUI({
+    tags$iframe(style = "height: 100vh;",
+                src = paste0(students[[rv$s_index]]$plot_path, "#zoom=page-width"))
+  })
 
-  output$a_plots <- renderUI({tags$iframe(src = answer_plots)})
+  output$a_plots <- renderUI({
+    tags$iframe(style = "height: 100vh;",
+                src = paste0(answer_plots, "#zoom=page-width"))
+  })
 
   ##### NAVIGATION #####
 

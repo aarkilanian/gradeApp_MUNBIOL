@@ -21,28 +21,19 @@ card_solution <- bslib::card(
 )
 
 card_rubric <- bslib::card(
+  min_height = "200px",
   bslib::card_header("Rubric"),
   uiOutput("auto_comments"),
   uiOutput("rubric_checkbox")
   )
 
 card_progress <- bslib::card(
+  min_height = "200px",
   textOutput("score_display"),
   textOutput("last_date"),
   checkboxInput("flag", "Flag question", FALSE)
 )
 
-##### Plots #####
-
-# card_student_plot <- bslib::card(
-#   bslib::card_header("Student plots"),
-#   htmlOutput("s_plots")
-# )
-
-card_solution_plot <- bslib::card(
-  bslib::card_header("Solution plots"),
-  htmlOutput("a_plots")
-)
 
 ##### Shortcuts #####
 short_nav_sym <- div(
