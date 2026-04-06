@@ -21,8 +21,6 @@ rubric <- read.csv("../data/1002_rubric.csv") %>%
 # Read autograding output
 students <- readRDS("../data/autograded.rda")
 
-students[[1]]$plot_path <- "solution_plots.pdf"
-
 # Read solutions
 answers <- readRDS("../data/1002_answers.rda")
 answer_plots <- "solution_plots.pdf"
