@@ -164,10 +164,6 @@ function(input, output, session){
   # Flag question (mouse) & save
   observeEvent(input$flag, {
 
-    #if(input$flag == curLog()$flagged) return()
-
-    print("saving flag")
-
     # Read current and full log
     full_log <- fullLog()
     cur_log <- curLog()
