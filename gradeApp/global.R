@@ -19,9 +19,7 @@ rubric <- read.csv("../data/1002_rubric.csv") %>%
   mutate(question = question - 1)
 
 # Read autograding output
-students <- readRDS("../data/autograded.rda")
-
-students[[1]]$plot_path <- "solution_plots.pdf"
+students <- readRDS("../data/autograded_apr7_2.rda")
 
 # Read solutions
 answers <- readRDS("../data/1002_answers.rda")
@@ -31,7 +29,7 @@ answer_plots <- "solution_plots.pdf"
 subs_path <- "www/submissions/"
 
 # Set path to plot directory
-plot_path <- "www/plots/"
+plot_path <- "plots/"
 
 # Read descriptive data
 tot_student <- length(students)
@@ -83,3 +81,4 @@ if(any(gradelog$last != "")){
   last_q <- 1
   last_s <- 1
 }
+
