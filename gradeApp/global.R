@@ -19,7 +19,7 @@ rubric <- read.csv("../data/1002_rubric.csv") %>%
   mutate(question = question - 1)
 
 # Read autograding output
-students <- readRDS("../data/autograded_apr7_2.rda")
+students <- readRDS("../data/autograded.rda")
 
 # Read solutions
 answers <- readRDS("../data/1002_answers.rda")
@@ -81,4 +81,3 @@ if(any(gradelog$last != "")){
   last_q <- 1
   last_s <- 1
 }
-
