@@ -19,17 +19,17 @@ rubric <- read.csv("../data/1002_rubric.csv") %>%
   mutate(question = question - 1)
 
 # Read autograding output
-students <- readRDS("../data/autograded.rda")
+students <- readRDS("../data/autograded_supplement.rda")
 
 # Read solutions
 answers <- readRDS("../data/1002_answers.rda")
 answer_plots <- "www/plots/solution_plots.pdf"
 
 # Set path to submission directory
-subs_path <- "www/submissions/"
+subs_path <- "www/submissions_supplement/"
 
 # Set path to plot directory
-plot_path <- "www/plots/"
+plot_path <- "www/plots_supplement/"
 
 # Read descriptive data
 tot_student <- length(students)
@@ -38,7 +38,7 @@ tot_question <- length(answers)
 ##### Log #####
 
 # Set log path
-log_path <- "../data/gradelog.csv"
+log_path <- "../data/gradelog_supplement.csv"
 # Build log if not present
 if (!file.exists(log_path)) {
 
