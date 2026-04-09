@@ -135,7 +135,7 @@ bslib::page_sidebar(
 
     ##### PLOTS #####
 
-    sidebar =  bslib::sidebar(position = "right", width = "60%", height = "600px",
+    sidebar =  bslib::sidebar(position = "right", width = "60%", height = "600px", open = FALSE,
                               layout_column_wrap(
                                 card(card_header("Student plots"), uiOutput("s_plots")),
                                 card(card_header("Solution plots"), uiOutput("a_plots"))

@@ -211,6 +211,13 @@ function(input, output, session){
   # Update script in editor
   observeEvent(student_script(), {
     updateAceEditor(session, "code", value = student_script())
+
+  })
+
+  # Update student environment
+  get_env <- reactive({
+    curS <- rv$s_index
+    return(students[[curS]]$env_corr)
   })
 
   # Reset script
@@ -220,7 +227,7 @@ function(input, output, session){
 
   # Evaluate expression when pressing "run"
   evaled_call <- eventReactive(input$run, {
-    eval(parse(text = isolate(input$code_selection)))
+    eval(parse(text = isolate(input$code_selection)), envir = list2env(get_env()))
   })
 
   # Render expression output
@@ -232,7 +239,7 @@ function(input, output, session){
 
   output$s_plots <- renderUI({
     tags$iframe(style = "height: 100vh;",
-                src = paste0(students[[rv$s_index]]$plot_path, "#zoom=page-width"))
+                src = paste0(plot_path, students[[rv$s_index]]$plot_path, "#zoom=page-width"))
   })
 
   output$a_plots <- renderUI({

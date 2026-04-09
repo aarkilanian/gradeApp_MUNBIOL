@@ -29,7 +29,7 @@ answer_plots <- "www/plots/solution_plots.pdf"
 subs_path <- "www/submissions/"
 
 # Set path to plot directory
-plot_path <- "www/plots/"
+plot_path <- "plots/"
 
 # Read descriptive data
 tot_student <- length(students)
